@@ -1,4 +1,4 @@
-async function getAmazonProductsFromApi(searchCategory, searchString, maxNumberOfProducts) {
+async function getAmazonProductsFromApi(searchCategory, searchString,  currentPage, maxNumberOfProducts) {
     let retArray = [];
     let retData = {};
     let url = '';
@@ -25,7 +25,7 @@ async function getAmazonProductsFromApi(searchCategory, searchString, maxNumberO
 
                 let respBuff = JSON.parse(myJsonString);
 
-                retArray = convertAmazonResponseForUI(respBuff, 'Amazon');
+                retArray = convertAmazonResponseForUI(respBuff, 'Amazon', currentPage, maxNumberOfProducts);
                 retData['error'] = "ok";
 
                 retData['data'] = retArray;
@@ -56,7 +56,7 @@ function convertAmazonResponseForUI(response, eshop, currentPage, numberInPage) 
     if(endIndex > respLen - 1){
         endIndex = respLen;
     }
-    console.log(endIndex)
+    
     if(respLen > 0){
         for(let i = startIndex; i < endIndex; i ++){
             let row = resp[i];
@@ -70,6 +70,5 @@ function convertAmazonResponseForUI(response, eshop, currentPage, numberInPage) 
             retArray.push(buff);
         }
     }
-    console.log(retArray)
     return retArray;
 }
