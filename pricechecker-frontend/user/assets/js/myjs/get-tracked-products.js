@@ -101,10 +101,13 @@ function deleteTrackedProduct(id){
     });
 }
 async function showTrackedProducts(){
+    console.log(userEmail)
     if(userEmail){
         let trackedResponse = await getTrackedProducts();
+        console.log(trackedResponse)
         let trackedHtml = await convertResponse2HtmlForTracking(trackedResponse);
         let table = document.getElementById('tracked-tbody');
+        console.log(trackedHtml)
         table.innerHTML = trackedHtml;
         console.log("tracked html:" + trackedHtml);
         if (preloader != null){
@@ -122,6 +125,7 @@ async function convertResponse2HtmlForTracking(response){
     let resJson = JSON.parse(response);
     if(resJson['status'] === 'ok' && resJson['data']){
         let data = resJson['data'];
+        console.log(data)
         for (let i = 0; i < data.length; i ++){
             let id = data[i]['id'];
             let image_url = data[i]['image_url'];

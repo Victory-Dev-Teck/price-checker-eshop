@@ -8,6 +8,7 @@ function addTrending(title, description, productUrl, imageUrl, price, category, 
         'category' : category,
         'eshop' : eshop
     };
+
     $.ajax(
         {
             async : false,
@@ -16,8 +17,11 @@ function addTrending(title, description, productUrl, imageUrl, price, category, 
             data: sentData,
             success: function (response) {
                 var resp = JSON.parse(response);
+                
                 if((resp['status'] === 'ok')){
+
                     window.location.href = baseAdminPathName + '/authorized/trendings/trendings.html';
+                    console.log(sentData)
                     // window.location.reload(true);
                 }else {
                     window.console.log("add trending product error: " + resp['error']);

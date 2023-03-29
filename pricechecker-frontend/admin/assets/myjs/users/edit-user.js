@@ -49,6 +49,7 @@ function updateUser(){
                 success: function (response) {
                     var resp = JSON.parse(response);
                     if((resp['status'] === 'ok')){
+                        window.console.log("user info updated");
                         window.location.href = baseAdminPathName + '/authorized/users/users.html';
                     }else {
                         window.console.log("add product error: " + resp['error']);

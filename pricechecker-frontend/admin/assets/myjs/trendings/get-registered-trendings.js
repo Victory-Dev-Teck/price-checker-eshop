@@ -47,7 +47,7 @@ function convertResponse2HtmlForTrendingProducts(response){
                 var image_url = resp['data'][i]['image_url'];
                 var price = resp['data'][i]['price'];
                 var category = resp['data'][i]['category'];
-                var eshop = resp['data'][i]['shop_name'];
+                var eshop = resp['data'][i]['eshop'];
                 resultHtml +=  '<tr>\n' +
                     '                                        <td>' + (i + 1) + '</td>\n' +
                     '                                        <td><img src="' + image_url + '" alt="" /></td>\n' +
@@ -93,6 +93,7 @@ function deleteTrending(id){
     });
 }
 function getAllTrendings(currentPage){
+    //localStorage.setItem("sendData", null)
     var products = getTrendingProducts(numOfShowProducts, currentPage);
     container.innerHTML = products;
 }
@@ -106,4 +107,5 @@ function getNextTrendingsPage(){
     currentPage++;
     getAllTrendings(currentPage)
 }
+
 getAllTrendings(currentPage);
