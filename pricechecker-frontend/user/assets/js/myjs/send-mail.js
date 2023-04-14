@@ -1,26 +1,44 @@
-function sendEmail(){
-    // let firstname = document.getElementById('firstName').value;
-    //
-    // let alertDiv = document.getElementById('alert-error');
-    // let ajaxRequest = $.ajax({
-    //     async: false,
-    //     method: 'POST',
-    //     url: baseServerPathNameForUser + '/authentications/email-check.php?email=' + email,
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     }
-    // });
-    // ajaxRequest.success(function (response) {
-    //     if(response['status'] === 'ok'){
-    //         window.console.log(response['info']);
-    //         window.localStorage.setItem('pricechecker-user-name', email);
-    //         window.location.href = baseUserPathName + '/authentications/reset-code.html';
-    //     }else{
-    //         alertDiv.innerText = response['error'];
-    //     }
-    // });
-    // ajaxRequest.fail(function (response){
-    //     alertDiv.innerText = response.toString();
-    // });
+function sendEmail(firstName, lastName, subject, mailText){
+
+    let alertDiv = document.getElementById('email-fail-alert');
+
+    let params = {
+        email: 'pricechecker@electro.com',
+        firstName: firstName,
+        lastName: lastName,
+        subject: subject,
+        mailText: mailText};
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            "async": true,
+            "crossDomain": true,
+            "url": baseServerPathNameForUser + '/authentications/send-email.php',
+            "method": "POST",
+            "data": params,
+            success: function (response) {
+                let respBuff = null;
+                try {
+                    let respBuff = JSON.parse(response);
+                    if(respBuff['status'] !== 'ok'){
+                        alertDiv.setAttribute("style", "visibility:visible;");
+                        alertDiv.innerText = respBuff['error'];
+                    }
+                }catch (e) {
+                    alertDiv.setAttribute("style", "visibility:visible;");
+                    console.log(response);
+                    if(response.includes(" Failed to connect to mailserver")){
+                        alertDiv.innerText = "Failed to connect to mailserver.";
+                    }else {
+                        alertDiv.innerText = response;
+                    }
+                }
+                return resolve(respBuff);
+            },
+            fail: function (response, textStatus) {
+                let errStr = 'Status is ' + textStatus + '.\n Response is ' + response.toString();
+                alertDiv.innerText = errStr;
+                return reject(errStr);
+            }
+        });
+    });
 }

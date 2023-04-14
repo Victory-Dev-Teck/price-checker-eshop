@@ -1,33 +1,7 @@
--- phpMyAdmin SQL Dump
--- version 4.8.5
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Mar 08, 2023 at 11:50 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 5.6.40
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `fyp`
---
-CREATE DATABASE IF NOT EXISTS `fyp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `fyp`;
-
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQL
+Source Server         : pricechecker
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : fyp
@@ -36,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2023-03-14 07:19:22
+Date: 2023-04-13 13:15:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -91,7 +65,7 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `cat_id` int(100) NOT NULL AUTO_INCREMENT,
   `cat_title` text NOT NULL,
-  `products` int(11) NOT NULL DEFAULT '0',
+  `products` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`cat_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
@@ -111,34 +85,50 @@ CREATE TABLE `fav` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `user_email` varchar(100) NOT NULL,
   `product_url` varchar(1000) NOT NULL,
-  `time_stamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time_stamp` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `image_url` varchar(1000) NOT NULL,
   `description` varchar(1000) DEFAULT NULL,
   `title` varchar(200) DEFAULT NULL,
   `price` varchar(20) DEFAULT NULL,
-  `eshop` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of fav
 -- ----------------------------
-INSERT INTO `fav` VALUES ('4', 'sample', 'https://ebay.com/itm/123456?hash=item28caef0a3a:g:E3kAAOSwlGJiMikD', '2022-06-30 16:43:21', '', null, null, null, '');
-INSERT INTO `fav` VALUES ('5', 'sample', 'https://www.flipkart.com/vivo-t1-44w-starry-sky-128-gb/p/itm6fabe8894256b', '2022-06-30 16:45:29', '', null, null, null, '');
-INSERT INTO `fav` VALUES ('6', 'sample', '//www.aliexpress.com/item/3256804277716806.html', '2022-06-30 16:45:40', '', null, null, null, '');
-INSERT INTO `fav` VALUES ('7', '', '', '2022-07-01 12:00:22', '', null, null, null, '');
-INSERT INTO `fav` VALUES ('11', 'horikhan840@gmail.com', 'https://www.ebay.com/itm/403312270372?epid=2305029321', '2022-07-01 12:04:39', '', null, null, null, '');
-INSERT INTO `fav` VALUES ('12', 'horikhan840@gmail.com', 'https://www.amazon.com/dp/B09NBPSYKD', '2022-07-01 12:07:12', '', null, null, null, '');
-INSERT INTO `fav` VALUES ('13', 'horikhan840@gmail.com', 'https://www.flipkart.com/dell-core-i3-10th-gen-8-gb-1-tb-hdd-256-gb-ssd-windows-11-home-vostro-3510-thin-light-laptop/p/itm9ba5f470413d2', '2022-07-01 12:07:17', '', null, null, null, '');
-INSERT INTO `fav` VALUES ('14', 'horikhan840@gmail.com', 'https://www.ebay.com/itm/334100133142?hash=item4dc9eb7516:g:0sIAAOSw6TVhCYoQ', '2022-07-02 09:53:07', '', null, null, null, '');
-INSERT INTO `fav` VALUES ('15', 'horikhan840@gmail.com', 'https://ebay.com/itm/123456?hash=item28caef0a3a:g:E3kAAOSwlGJiMikD', '2022-07-02 10:00:32', 'https://ir.ebaystatic.com/rs/v/fxxj3ttftm5ltcqnto1o4baovyl.png', null, null, null, '');
-INSERT INTO `fav` VALUES ('16', 'horikhan840@gmail.com', 'https://www.amazon.com/dp/B095RZ62BX', '2022-07-02 10:00:33', 'https://m.media-amazon.com/images/I/61zRDADh YS._AC_UY218_.jpg', null, null, null, '');
-INSERT INTO `fav` VALUES ('17', 'horikhan840@gmail.com', 'https://www.flipkart.com/dell-ryzen-5-hexa-core-5600h-8-gb-512-gb-ssd-windows-10-4-graphics-nvidia-geforce-rtx-3050-g15-5515-gaming-laptop/p/itm337b5cde6d860', '2022-07-02 10:00:38', 'https://rukminim1.flixcart.com/image/312/312/kwl0akw0/computer/o/4/q/g15-5515-gaming-laptop-dell-original-imag98e62brs8uzy.jpeg?q=70', null, null, null, '');
-INSERT INTO `fav` VALUES ('30', 'super@gmail.com', 'http://localhost/pricechecker/mock-data/iphone_apple/1.png', '2023-02-24 11:10:32', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'C $250', '');
-INSERT INTO `fav` VALUES ('31', 'super@gmail.com', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', '2023-02-24 11:12:15', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', 'C $200', '');
-INSERT INTO `fav` VALUES ('32', 'poot@gmail.com', 'http://localhost/pricechecker/mock-data/iphone/iPhone 11 128GB, Genuine Black cheap, instant delivery.jpg', '2023-02-24 18:22:02', 'http://localhost/pricechecker/mock-data/iphone/iPhone 11 128GB, Genuine Black cheap, instant delivery.jpg', 'iPhone 11 128GB, Genuine Black cheap, instant delivery', 'iPhone 11 128GB, Genuine Black cheap, instant delivery', ' C $350', '');
-INSERT INTO `fav` VALUES ('35', 'matin@gmail.com', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', '2023-03-13 15:51:49', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', '$200', 'Ebay');
-INSERT INTO `fav` VALUES ('36', 'matin@gmail.com', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', '2023-03-13 17:24:29', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', '$250', 'Amazon');
+INSERT INTO `fav` VALUES ('4', 'sample', 'https://ebay.com/itm/123456?hash=item28caef0a3a:g:E3kAAOSwlGJiMikD', '2022-06-30 16:43:21', '', null, null, null);
+INSERT INTO `fav` VALUES ('5', 'sample', 'https://www.flipkart.com/vivo-t1-44w-starry-sky-128-gb/p/itm6fabe8894256b', '2022-06-30 16:45:29', '', null, null, null);
+INSERT INTO `fav` VALUES ('6', 'sample', '//www.aliexpress.com/item/3256804277716806.html', '2022-06-30 16:45:40', '', null, null, null);
+INSERT INTO `fav` VALUES ('7', '', '', '2022-07-01 12:00:22', '', null, null, null);
+INSERT INTO `fav` VALUES ('11', 'horikhan840@gmail.com', 'https://www.ebay.com/itm/403312270372?epid=2305029321', '2022-07-01 12:04:39', '', null, null, null);
+INSERT INTO `fav` VALUES ('12', 'horikhan840@gmail.com', 'https://www.amazon.com/dp/B09NBPSYKD', '2022-07-01 12:07:12', '', null, null, null);
+INSERT INTO `fav` VALUES ('13', 'horikhan840@gmail.com', 'https://www.flipkart.com/dell-core-i3-10th-gen-8-gb-1-tb-hdd-256-gb-ssd-windows-11-home-vostro-3510-thin-light-laptop/p/itm9ba5f470413d2', '2022-07-01 12:07:17', '', null, null, null);
+INSERT INTO `fav` VALUES ('14', 'horikhan840@gmail.com', 'https://www.ebay.com/itm/334100133142?hash=item4dc9eb7516:g:0sIAAOSw6TVhCYoQ', '2022-07-02 09:53:07', '', null, null, null);
+INSERT INTO `fav` VALUES ('15', 'horikhan840@gmail.com', 'https://ebay.com/itm/123456?hash=item28caef0a3a:g:E3kAAOSwlGJiMikD', '2022-07-02 10:00:32', 'https://ir.ebaystatic.com/rs/v/fxxj3ttftm5ltcqnto1o4baovyl.png', null, null, null);
+INSERT INTO `fav` VALUES ('16', 'horikhan840@gmail.com', 'https://www.amazon.com/dp/B095RZ62BX', '2022-07-02 10:00:33', 'https://m.media-amazon.com/images/I/61zRDADh YS._AC_UY218_.jpg', null, null, null);
+INSERT INTO `fav` VALUES ('17', 'horikhan840@gmail.com', 'https://www.flipkart.com/dell-ryzen-5-hexa-core-5600h-8-gb-512-gb-ssd-windows-10-4-graphics-nvidia-geforce-rtx-3050-g15-5515-gaming-laptop/p/itm337b5cde6d860', '2022-07-02 10:00:38', 'https://rukminim1.flixcart.com/image/312/312/kwl0akw0/computer/o/4/q/g15-5515-gaming-laptop-dell-original-imag98e62brs8uzy.jpeg?q=70', null, null, null);
+INSERT INTO `fav` VALUES ('23', 'matin@gmail.com', '1111', '2023-02-13 10:12:18', 'http://localhost/pricechecker/user/images/flipkart.png', 'undefined', 'undefined', '$10-$20');
+INSERT INTO `fav` VALUES ('26', 'matin@gmail.com', 'undefined', '2023-02-23 00:32:47', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', '200$');
+INSERT INTO `fav` VALUES ('27', 'matin@gmail.com', 'http://localhost/pricechecker/mock-data/iphone_apple/1.png', '2023-02-23 00:41:24', 'http://localhost/pricechecker/mock-data/iphone_apple/1.png', 'iPhone 14 Pro 256GB 27790', 'iPhone 14 Pro 256GB 27790', '570$');
+INSERT INTO `fav` VALUES ('28', 'matin@gmail.com', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', '2023-02-23 00:41:44', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', '250$');
+INSERT INTO `fav` VALUES ('29', 'matin@gmail.com', 'http://localhost/pricechecker/mock-data/laptop/Samsung Galaxy Book 2 Pro 360.jpg', '2023-02-23 01:15:46', 'http://localhost/pricechecker/mock-data/laptop/Samsung Galaxy Book 2 Pro 360.jpg', 'Samsung Galaxy Book 2 Pro 360.jpg', 'Samsung Galaxy Book 2 Pro 360.jpg', '300$');
+
+-- ----------------------------
+-- Table structure for messages
+-- ----------------------------
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(30) DEFAULT NULL,
+  `last_name` varchar(30) DEFAULT NULL,
+  `subject` text DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of messages
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for products
@@ -154,12 +144,12 @@ CREATE TABLE `products` (
   `product_price` varchar(100) NOT NULL,
   `product_desc` text NOT NULL,
   `featured_image` text NOT NULL,
-  `qty` int(11) NOT NULL DEFAULT '1',
-  `product_keywords` text,
-  `product_views` int(11) DEFAULT '0',
-  `product_status` int(11) NOT NULL DEFAULT '1',
+  `qty` int(11) NOT NULL DEFAULT 1,
+  `product_keywords` text DEFAULT NULL,
+  `product_views` int(11) DEFAULT 0,
+  `product_status` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of products
@@ -205,16 +195,17 @@ CREATE TABLE `registered_products` (
   `category` varchar(100) DEFAULT '',
   `eshop` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of registered_products
 -- ----------------------------
-INSERT INTO `registered_products` VALUES ('13', 'mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'http://localhost/pricechecker/mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'http://localhost/pricechecker/mock-data/laptop/The 9 Best Laptops of 2023.jpg', '400$', 'mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'Amazon');
-INSERT INTO `registered_products` VALUES ('14', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', '250$', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Amazon');
-INSERT INTO `registered_products` VALUES ('15', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', '200$', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', 'Amazon');
-INSERT INTO `registered_products` VALUES ('16', 'iPhone 14 Pro 256GB 27790', 'iPhone 14 Pro 256GB 27790', 'http://localhost/pricechecker/mock-data/iphone_apple/1.png', 'http://localhost/pricechecker/mock-data/iphone_apple/1.png', '570$', 'iPhone 14 Pro 256GB 27790', 'Amazon');
-INSERT INTO `registered_products` VALUES ('17', 'Samsung Galaxy Book 2 Pro 360.jpg', 'Samsung Galaxy Book 2 Pro 360.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung Galaxy Book 2 Pro 360.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung Galaxy Book 2 Pro 360.jpg', '300$', 'Samsung Galaxy Book 2 Pro 360.jpg', 'Amazon');
+INSERT INTO `registered_products` VALUES ('6', 'Widescreen NX Mini F1 SMART NX', 'Widescreen NX Mini F1 SMART NX', 'url5', 'http://localhost/pricechecker/user/images/flipkart.png', '$10-$20', 'All', 'Amazon');
+INSERT INTO `registered_products` VALUES ('7', 'title2', 'title2', 'url2', 'http://localhost/pricechecker/user/images/ebay.png', '$212', 'All', 'Ebay');
+INSERT INTO `registered_products` VALUES ('8', 'Widescreen NX Mini F1 SMART NX', 'Widescreen NX Mini F1 SMART NX', 'url6', 'http://localhost/pricechecker/user/images/ebay.png', '$10-$20', 'All', 'Amazon');
+INSERT INTO `registered_products` VALUES ('9', 'mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'http://localhost/pricechecker/mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'http://localhost/pricechecker/mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'C $400', 'mock-data/laptop/The', 'Amazon');
+INSERT INTO `registered_products` VALUES ('10', 'Samsung laptop 2019.jpg', 'Samsung laptop 2019.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung laptop 2019.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung laptop 2019.jpg', '470$', 'Samsung laptop 2019.', 'Amazon');
+INSERT INTO `registered_products` VALUES ('11', 'Samsung Unveils Two New PCs with Signature Style a', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and ', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and ', '450$', 'Samsung Unveils Two ', 'Amazon');
 
 -- ----------------------------
 -- Table structure for sub_categories
@@ -224,9 +215,9 @@ CREATE TABLE `sub_categories` (
   `sub_cat_id` int(11) NOT NULL AUTO_INCREMENT,
   `sub_cat_title` varchar(100) NOT NULL,
   `cat_parent` int(11) NOT NULL,
-  `cat_products` int(11) NOT NULL DEFAULT '0',
-  `show_in_header` tinyint(4) NOT NULL DEFAULT '1',
-  `show_in_footer` tinyint(4) NOT NULL DEFAULT '1',
+  `cat_products` int(11) NOT NULL DEFAULT 0,
+  `show_in_header` tinyint(4) NOT NULL DEFAULT 1,
+  `show_in_footer` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`sub_cat_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
@@ -253,20 +244,20 @@ CREATE TABLE `tracked_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(1000) DEFAULT '',
   `description` varchar(1000) DEFAULT NULL,
-  `current_price` varchar(10) DEFAULT NULL,
+  `price` varchar(10) DEFAULT NULL,
   `image_url` varchar(1000) DEFAULT '',
   `product_url` varchar(1000) DEFAULT '',
   `user_email` varchar(100) DEFAULT '',
-  `old_price` varchar(20) NOT NULL,
-  `eshop` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of tracked_products
 -- ----------------------------
-INSERT INTO `tracked_products` VALUES ('20', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', '$570', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', 'matin@gmail.com', '$250', 'Ebay');
-INSERT INTO `tracked_products` VALUES ('21', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', '$570', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'matin@gmail.com', '$250', 'Amazon');
+INSERT INTO `tracked_products` VALUES ('4', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', '250$', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and ', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and ', 'matin@gmail.com');
+INSERT INTO `tracked_products` VALUES ('5', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', '250$', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and ', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and ', 'matin@gmail.com');
+INSERT INTO `tracked_products` VALUES ('6', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', '250$', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'matin@gmail.com');
+INSERT INTO `tracked_products` VALUES ('7', 'Samsung Galaxy Book 2 Pro 360.jpg', 'Samsung Galaxy Book 2 Pro 360.jpg', '300$', 'http://localhost/pricechecker/mock-data/laptop/Samsung Galaxy Book 2 Pro 360.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung Galaxy Book 2 Pro 360.jpg', 'matin@gmail.com');
 
 -- ----------------------------
 -- Table structure for trending_products
@@ -282,34 +273,15 @@ CREATE TABLE `trending_products` (
   `category` varchar(50) DEFAULT NULL,
   `eshop` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of trending_products
 -- ----------------------------
-INSERT INTO `trending_products` VALUES ('8', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom', 'http://localhost/pricechecker/mock-data/iphone_apple/1.png', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'C $250', 'Samsung Unveils Two New PCs with Signature Style a', 'Amazon');
-
--- ----------------------------
--- Table structure for user
--- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `mobile` varchar(15) NOT NULL,
-  `city` text NOT NULL,
-  `user_role` int(11) DEFAULT '1',
-  `code` mediumint(9) NOT NULL,
-  `status` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES ('18', 'Muhammad Haroon', 'horikhan840@gmail.com', '$2y$10$iYH1T2zYAuKpOs7beLmHWOOt3oF25jM6w2GIkZglUg/hQUE/H1m5C', '+923487490545', 'Faisalabad', '1', '0', 'verified');
+INSERT INTO `trending_products` VALUES ('1', 'Smartphone 6S 32GB LTE', 'Smartphone 6S 32GB LTE', 'url4', 'http://localhost/pricechecker/user/images/img2.jpg', '$359', 'All', 'Ebay');
+INSERT INTO `trending_products` VALUES ('2', 'Widescreen NX Mini F1 SMART NX', 'Widescreen NX Mini F1 SMART NX', 'url5', 'http://localhost/pricechecker/user/images/flipkart.png', '$10-$20', 'All', 'Amazon');
+INSERT INTO `trending_products` VALUES ('3', 'mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'http://localhost/pricechecker/mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'http://localhost/pricechecker/mock-data/laptop/The 9 Best Laptops of 2023.jpg', '400$', 'mock-data/laptop/The 9 Best Laptops of 2023.jpg', 'Amazon');
+INSERT INTO `trending_products` VALUES ('4', 'Samsung laptop 2019.jpg', 'Samsung laptop 2019.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung laptop 2019.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung laptop 2019.jpg', '470$', 'Samsung laptop 2019.jpg', 'Amazon');
 
 -- ----------------------------
 -- Table structure for users
@@ -322,17 +294,18 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `mobile` varchar(15) NOT NULL,
   `city` text NOT NULL,
-  `user_role` int(11) DEFAULT '1',
+  `user_role` int(11) DEFAULT 1,
   `code` mediumint(9) NOT NULL,
   `status` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('35', 'super', 'super@gmail.com', '$2y$10$lPvvXrYK1UHYWnzfLWKjouOz1R2Mxk3wp8y.C/36mpb7UtRaf4sSS', '', '', '1', '962727', 'verified');
-INSERT INTO `users` VALUES ('34', 'matin', 'matin@gmail.com', '$2y$10$W2bZAog2lbKD/Md3Z0ZVcu/KzWbwOZbIrhMWW/LA/VvMz6Wd5/.Re', '', '', '1', '636936', 'verified');
+INSERT INTO `users` VALUES ('28', 'susan', 'susan@gmail.com', '$2y$10$4j7hvUcChaXo6tqehheuZuztROo8MZ6dFXDPFGt55G7oRMHCchSZy', '', '', '1', '810748', 'verified');
+INSERT INTO `users` VALUES ('24', 'matin3', 'matin@gmail.com', '$2y$10$e8FD5Ol..E/sJHzxuFa1tOYDi/9zKM.kbGsQLYlB1h4zq.7jv9jqe', '', '', '1', '965315', 'verified');
+INSERT INTO `users` VALUES ('25', 'user3', 'name@gmail.com', '$2y$10$4cyxNY2.NCB1QPmD1pDQY.X.ldrWA1H/Lys2Sb7SCRag4B6Os4n4O', '', '', '1', '866015', 'verified');
 
 -- ----------------------------
 -- Table structure for visited_products
@@ -347,7 +320,7 @@ CREATE TABLE `visited_products` (
   `description` varchar(1000) DEFAULT '',
   `price` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of visited_products
@@ -355,6 +328,3 @@ CREATE TABLE `visited_products` (
 INSERT INTO `visited_products` VALUES ('1', 'matin@gmail.com', 'http://localhost/pricechecker/user/images/ebay.png', 'url2', 'title2', 'title2', '1340');
 INSERT INTO `visited_products` VALUES ('2', 'matin@gmail.com', 'http://localhost/pricechecker/user/images/flipkart.png', '1111', 'Wireless Audio System Multiroom 360 degree Full base audio', 'Wireless Audio System Multiroom 360 degree Full base audio', '$10-$20');
 INSERT INTO `visited_products` VALUES ('3', 'matin@gmail.com', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', 'http://localhost/pricechecker/mock-data/laptop/Ultra-Thin Touchscreen Laptop - Microsoft Surface.jpg', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', 'Ultra-Thin Touchscreen Laptop - Microsoft Surface', '200$');
-INSERT INTO `visited_products` VALUES ('4', 'matin@gmail.com', 'http://localhost/pricechecker/mock-data/laptop/Samsung Galaxy Book 2 Pro 360.jpg', 'http://localhost/pricechecker/mock-data/laptop/Samsung Galaxy Book 2 Pro 360.jpg', 'Samsung Galaxy Book 2 Pro 360.jpg', 'Samsung Galaxy Book 2 Pro 360.jpg', 'C $300');
-INSERT INTO `visited_products` VALUES ('5', 'matin@gmail.com', 'http://localhost/pricechecker/mock-data/iphone_apple/1.png', 'http://localhost/pricechecker/mock-data/iphone_apple/1.png', 'iPhone 14 Pro 256GB 27790', 'iPhone 14 Pro 256GB 27790', '570$');
-INSERT INTO `visited_products` VALUES ('6', 'matin@gmail.com', 'http://localhost/pricechecker/mock-data/iphone_apple/1.png', 'http://localhost/pricechecker/mock-data/laptop/Samsung Unveils Two New PCs with Signature Style and Performance - Samsung  US Newsroom.jpg', 'iPhone 14 Pro 256GB 27790', 'iPhone 14 Pro 256GB 27790', '$570');
