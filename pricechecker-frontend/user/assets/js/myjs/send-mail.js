@@ -3,7 +3,7 @@ function sendEmail(firstName, lastName, subject, mailText){
     let alertDiv = document.getElementById('email-fail-alert');
 
     let params = {
-        email: 'pricechecker@electro.com',
+        email: 'pricecheckerproject@gmail.com',
         firstName: firstName,
         lastName: lastName,
         subject: subject,

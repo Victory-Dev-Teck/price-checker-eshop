@@ -1,4 +1,5 @@
 <?php
+    // header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
     require_once "../include/connection.php";
     $response = array();
     $response['status'] = 'fail';
@@ -11,6 +12,9 @@
         $subject = mysqli_real_escape_string($con, $_POST['subject']);
         $message = mysqli_real_escape_string($con, $_POST['mailText']);
         $headers = 'From: contact form:' . "\r\n" .$firstName.' '.$lastName;
+        $headers = "MIME-Version: 1.0" . "\r\n"; 
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
+        $headers .= "Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure"."\r\n";
         $strQuery = "INSERT INTO `messages`(`first_name`, `last_name`, `subject`, `message`) 
                                     VALUES ('$firstName', '$lastName', '$subject', '$message')";
         if(mail($email, $subject, $message, $headers)){
